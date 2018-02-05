@@ -556,7 +556,7 @@ plt.xlabel('Duration(m)')
 # - **1) How does ridership differ by month or season? Which month / season has the highest ridership?Does the ratio of Subscriber trips to Customer trips change depending on the month or season?**
 # - The ridership and ratio of Subscriber trips to Customer trips change depending on the month. The highest ratio observered is in month of July(0.265) and lowest ratio is in month of Jan(0.056)
 # - The overall riders increases gradually from Jan to Jul. From Jun to Oct the riders are in the range of 45097 to 48277 (not showing big diffrences). From Oct, the number gradually decreasestill Dec. The peak is observed in the month of Sep.
-# - Overall Customer: The graph is bell shaped. the peak is observed in the month of Jul.
+# - Overall Customer: The graph is bell shaped. the peak is observed in the month of Jul. The graph represents Unimodal Distribution.
 # - Overall Subscriber: The graph is plateau distributed. The peak is observer in the month of Sep. The number of subscribers are approximately same in the month of Jun, Aug, Sep, Oct.
 # 
 # - **2) Is the pattern of ridership different on the weekends versus weekdays? On what days are Subscribers most likely to use the system? What about Customers?**
@@ -578,7 +578,7 @@ plt.xlabel('Duration(m)')
 # - **4) Compare the propation of customers and subscribers.**
 # - Chicago has the largest proportion of customer and NYC has the largest proportion of subscriber.
 
-# In[28]:
+# In[37]:
 
 
 ## Use this and additional cells to continue to explore the dataset. ##
@@ -591,20 +591,20 @@ dc = pd.read_csv('./data/Washington-2016-Summary.csv')
 bike1 = nyc.append(chicago)
 bike = bike1.append(dc)
 bike_month = bike.groupby(['user_type','month']).count()['hour']
-bike_total = bike_month['Customer'] + bike_month['Subscriber']
+#bike_total = bike_month['Customer'] + bike_month['Subscriber']
 bike_overall_total = bike.groupby('user_type')['month'].count()
 ratio=bike_month['Customer']/bike_month['Subscriber']
-print(bike_month, bike_total, bike_overall_total, ratio)
+print(bike_month, bike_overall_total, ratio)
 
 
-# In[29]:
+# In[39]:
 
 
 ind = py.arange(len(bike_month['Customer']))
-width = 0.25
+width = 0.3
 cus_bar = plt.bar(ind, bike_month['Customer'], width, color = 'r', label = 'Customer')
 sub_bar = plt.bar(ind+width, bike_month['Subscriber'], width, color = 'g', label = 'Subscriber')
-total_bar= plt.bar(ind+width+width, bike_total, width, color= 'b', label = 'Total')
+#total_bar= plt.bar(ind+width+width, bike_total, width, color= 'b', label = 'Total')
 plt.title('Total Number of riders by month and user type')
 plt.legend()
 
@@ -681,7 +681,11 @@ plt.legend()
 # 
 # **Question 7**: Putting the bike share data aside, think of a topic or field of interest where you would like to be able to apply the techniques of data science. What would you like to be able to learn from your chosen subject?
 # 
-# **Answer**: Replace this text with your response!
+# **Answer**: The techniques of data science can be applied for comparing the college performance for different types of test.
+# Like for Gate exam: 1)Howmany candidates write the exam which college, area, state...etc. 
+# 2)Ratio of male and female appearing for test.
+# 3)The performance of candidates in the test.
+# 4)Number of repeaters, who are writing the test.
 # 
 # > **Tip**: If we want to share the results of our analysis with others, we aren't limited to giving them a copy of the jupyter Notebook (.ipynb) file. We can also export the Notebook output in a form that can be opened even for those without Python installed. From the **File** menu in the upper left, go to the **Download as** submenu. You can then choose a different format that can be viewed more generally, such as HTML (.html) or
 # PDF (.pdf). You may need additional packages or software to perform these exports.
