@@ -51,7 +51,7 @@
 # 
 # > **Tip**: You can run a code cell like you formatted Markdown cells above by clicking on the cell and using the keyboard shortcut **Shift** + **Enter** or **Shift** + **Return**. Alternatively, a code cell can be executed using the **Play** button in the toolbar after selecting it. While the cell is running, you will see an asterisk in the message to the left of the cell, i.e. `In [*]:`. The asterisk will change into a number to show that execution has completed, e.g. `In [1]`. If there is output, it will show up as `Out [1]:`, with an appropriate number to match the "In" number.
 
-# In[2]:
+# In[10]:
 
 
 ## import all necessary packages and functions.
@@ -60,7 +60,7 @@ from datetime import datetime # operations to parse dates
 from pprint import pprint # use to print data structures like dictionaries iimport os                           # a nicer way than the base print function.
 
 
-# In[5]:
+# In[13]:
 
 
 def print_first_point(filename):
@@ -70,17 +70,17 @@ def print_first_point(filename):
     """
     # print city name for reference
     city = filename.split('-')[0].split('/')[-1]
-    print('\nCity: {}'.format(city))
+    # print('\nCity: {}'.format(city))
     
     with open(filename, 'r') as f_in:
-        print(filename)
+        # print(filename)
         ## Use the csv library to set up a DictReader object. ##
         trip_reader =csv.DictReader(f_in)
         ## first trip from the data file and store it in a variable. ##
         first_trip =next(trip_reader)
         ## Use the pprint library to print the first trip. ##
         import pprint
-        pprint.pprint(first_trip)
+        # pprint.pprint(first_trip)
     # output city name and first trip for later testing
     return (city, first_trip)
 
@@ -113,7 +113,7 @@ for data_file in data_files:
 # 
 # **Question 3a**: Complete the helper functions in the code cells below to address each of the cleaning tasks described above.
 
-# In[6]:
+# In[14]:
 
 
 def duration_in_mins(datum, city):
@@ -150,7 +150,7 @@ for city in tests:
     assert abs(duration_in_mins(example_trips[city], city) - tests[city]) < .001
 
 
-# In[7]:
+# In[15]:
 
 
 def time_of_trip(datum, city):
@@ -192,7 +192,7 @@ for city in tests:
     assert time_of_trip(example_trips[city], city) == tests[city]
 
 
-# In[8]:
+# In[16]:
 
 
 def type_of_user(datum, city):
@@ -230,7 +230,7 @@ for city in tests:
 
 # **Question 3b**: Now, use the helper functions you wrote above to create a condensed data file for each city consisting only of the data fields indicated above. In the `/examples/` folder, you will see an example datafile from the [Bay Area Bike Share](http://www.bayareabikeshare.com/open-data) before and after conversion. Make sure that your output is formatted to be consistent with the example file.
 
-# In[9]:
+# In[17]:
 
 
 def condense_data(in_file, out_file, city):
@@ -268,7 +268,7 @@ def condense_data(in_file, out_file, city):
             new_point = {'duration': duration, 'month': month, 'hour': hour,'day_of_week': day_of_week, 'user_type': user_type}
 
             ## TODO: write the processed information to the output file.     ##
-            print(new_point)
+            # print(new_point)
             
             ## see https://docs.python.org/3/library/csv.html#writer-objects ##
             trip_writer.writerow(new_point)
@@ -276,7 +276,7 @@ def condense_data(in_file, out_file, city):
             
 
 
-# In[10]:
+# In[18]:
 
 
 # Run this cell to check your work
@@ -289,7 +289,7 @@ city_info = {'Washington': {'in_file': './data/Washington-CapitalBikeshare-2016.
 
 for city, filenames in city_info.items():
     condense_data(filenames['in_file'], filenames['out_file'], city)
-    print_first_point(filenames['out_file'])
+    # print_first_point(filenames['out_file'])
 
 
 # > **Tip**: If you save a jupyter Notebook, the output from running code blocks will also be saved. However, the state of your workspace will be reset once a new session is started. Make sure that you run all of the necessary code blocks from your previous session to reestablish variables and functions before picking up where you last left off.
@@ -308,7 +308,7 @@ for city, filenames in city_info.items():
 # 
 # **Answer**: NYC has the highest number of trips. NYC has the highest proportion of trips made by subscribers. Chicago city has the highest proportion of trips made by short-term customers.
 
-# In[11]:
+# In[19]:
 
 
 def number_of_trips(filename):
@@ -341,7 +341,7 @@ def number_of_trips(filename):
         return(n_subscribers, n_customers, n_total, proportion_of_subscribers, proportion_of_customers)
 
 
-# In[12]:
+# In[20]:
 
 
 ## Modify this and the previous cell to answer Question 4a. Remember to run ##
@@ -349,7 +349,7 @@ def number_of_trips(filename):
 
 data_file = ['./data/Washington-2016-Summary.csv', './data/Chicago-2016-Summary.csv', './data/NYC-2016-Summary.csv']
 for datafile in data_file:
-    print(number_of_trips(datafile))
+    # print(number_of_trips(datafile))
 
 
 # > **Tip**: In order to add additional cells to a notebook, you can use the "Insert Cell Above" and "Insert Cell Below" options from the menu bar above. There is also an icon in the toolbar for adding new cells, with additional icons for moving the cells up and down the document. By default, new cells are of the code type; you can also specify the cell type (e.g. Code or Markdown) of selected cells from the Cell menu or the dropdown in the toolbar.
@@ -360,7 +360,7 @@ for datafile in data_file:
 # 
 # **Answer**: The average trip length for each city is Washington-18.93, Chicago-16.56, NYC-15.81. The proportion of riders made in each city that are longer than 30 minutes are Washington-10.83, Chicago-8.33, NYC-7.30.
 
-# In[13]:
+# In[ ]:
 
 
 ## Use this and additional cells to answer Question 4b.                 ##
@@ -392,19 +392,19 @@ def trip_length(filename):
     return (a, b, total_time, average_trip_length, proportion_of_rides) 
 
 
-# In[14]:
+# In[ ]:
 
 
 data_file = ['./data/Washington-2016-Summary.csv', './data/Chicago-2016-Summary.csv', './data/NYC-2016-Summary.csv']
 for datafile in data_file:
-    print(trip_length(datafile))
+    # print(trip_length(datafile))
 
 
 # **Question 4c**: Dig deeper into the question of trip duration based on ridership. Choose one city. Within that city, which type of user takes longer rides on average: Subscribers or Customers?
 # 
 # **Answer**: In NYC, customers take longer rides on average.
 
-# In[15]:
+# In[ ]:
 
 
 ## Use this and additional cells to answer Question 4c. If you have    ##
@@ -440,12 +440,12 @@ def trip_duration_based_on_ridership(filename):
 
 
 
-# In[16]:
+# In[23]:
 
 
 data_file = ['./data/NYC-2016-Summary.csv']
-for datafile in data_file:
-    print(trip_duration_based_on_ridership(datafile))
+#for datafile in data_file:
+    #print(trip_duration_based_on_ridership(datafile))
 
 
 # <a id='visualizations'></a>
@@ -453,7 +453,7 @@ for datafile in data_file:
 # 
 # The last set of values that you computed should have pulled up an interesting result. While the mean trip time for Subscribers is well under 30 minutes, the mean trip time for Customers is actually _above_ 30 minutes! It will be interesting for us to look at how the trip times are distributed. In order to do this, a new library will be introduced here, `matplotlib`. Run the cell below to load the library and to generate an example plot.
 
-# In[17]:
+# In[24]:
 
 
 # load library
@@ -481,7 +481,7 @@ plt.show()
 # 
 # You will now use these functions to create a histogram of the trip times for the city you selected in question 4c. Don't separate the Subscribers and Customers for now: just collect all of the trip times and plot them.
 
-# In[18]:
+# In[25]:
 
 
 ## Use this and additional cells to collect all of the trip times as a list ##
@@ -506,7 +506,7 @@ plt.xlabel('Duration(m)')
 # 
 # **Answer**: **Subscriber:** The peak is observed between 5-10 min duration. The graph is right-skewed and shows a steep fall after 5-10min duration till end. **Customer:** The peak is observed between 20-25 min duration. The graph is bell shaped.
 
-# In[19]:
+# In[26]:
 
 
 ## Use this and additional cells to answer Question 5. ##
@@ -523,7 +523,7 @@ plt.title('Distribution of Trip Durations for subscribers')
 plt.xlabel('Duration(m)')
 
 
-# In[20]:
+# In[27]:
 
 
 customers = trip.query('user_type == "Customer"')
@@ -578,7 +578,7 @@ plt.xlabel('Duration(m)')
 # - **4) Compare the propation of customers and subscribers.**
 # - Chicago has the largest proportion of customer and NYC has the largest proportion of subscriber.
 
-# In[53]:
+# In[28]:
 
 
 ## Use this and additional cells to continue to explore the dataset. ##
@@ -597,7 +597,7 @@ ratio=bike_month['Customer']/bike_month['Subscriber']
 print(bike_month, bike_total, bike_overall_total, ratio)
 
 
-# In[44]:
+# In[29]:
 
 
 ind = py.arange(len(bike_month['Customer']))
@@ -609,7 +609,7 @@ plt.title('Total Number of riders by month and user type')
 plt.legend()
 
 
-# In[37]:
+# In[30]:
 
 
 
@@ -620,7 +620,7 @@ dc_counts = dc.groupby('user_type').count()['hour']
 print(nyc_counts, chi_counts, dc_counts)
 
 
-# In[47]:
+# In[31]:
 
 
 ## plot the counts
@@ -632,7 +632,7 @@ plt.legend()
 plt.title('Number of Customers (1-3) and Subscribers (4-6) in NYC, Chicago and Washington')
 
 
-# In[48]:
+# In[32]:
 
 
 nyc_totals = nyc['user_type'].count()
@@ -650,7 +650,7 @@ plt.legend()
 plt.title('Proportion of Customers (1-3) and Subscribers (4-6) in NYC, Chicago and Washington')
 
 
-# In[50]:
+# In[33]:
 
 
 bike1 = nyc.append(chicago)
@@ -663,7 +663,7 @@ bike_day_pro_sub = (bike_day['Subscriber'] / bike_total['Subscriber']) * 100
 print(bike_day_pro_cus, bike_day_pro_sub)
 
 
-# In[46]:
+# In[34]:
 
 
 ind = py.arange(len(bike_day_pro_cus))
@@ -690,7 +690,7 @@ plt.legend()
 # 
 # > Either way, once you've gotten the .html report in your workspace, you can complete your submission by clicking on the "Submit Project" button to the lower-right hand side of the workspace.
 
-# In[54]:
+# In[35]:
 
 
 from subprocess import call
